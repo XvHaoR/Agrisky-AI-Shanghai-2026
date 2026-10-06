@@ -1,0 +1,77 @@
+{
+  "schema_version": "agrisky-crop-claim-schemes-v1.0",
+  "disclosure": "本规则包用于遥感辅助查勘与产品规则验证。赔付参数以已上传并冻结的保险合同为准，技术规则不替代合同约定或人工审核。",
+  "technical_references": [
+    {
+      "id": "T-01",
+      "title": "Crop yield response to water",
+      "publisher": "Food and Agriculture Organization of the United Nations",
+      "url": "https://www.fao.org/4/i2800e/i2800e00.htm"
+    },
+    {
+      "id": "T-02",
+      "title": "Wheat yield estimation using Sentinel-2 vegetation indices",
+      "publisher": "Remote Sensing of Environment",
+      "url": "https://doi.org/10.1016/j.rse.2019.111410"
+    },
+    {
+      "id": "T-03",
+      "title": "Maize monitoring with Sentinel-2 vegetation indices",
+      "publisher": "Agronomy",
+      "url": "https://doi.org/10.3390/agronomy15061329"
+    },
+    {
+      "id": "T-04",
+      "title": "Rice phenology mapping using Sentinel-1 time series",
+      "publisher": "Remote Sensing",
+      "url": "https://www.mdpi.com/2072-4292/15/11/2785"
+    }
+  ],
+  "schemes": {
+    "rice": {
+      "name": "水稻",
+      "sum_insured_per_mu": 1000,
+      "deductible_loss_ratio": 0.10,
+      "total_loss_ratio": 0.80,
+      "indices": ["Sentinel-1 VV/VH", "Sentinel-2 NDVI/EVI", "历史同期长势基线"],
+      "assessment_focus": "洪涝积水、倒伏和抽穗灌浆期长势异常；SAR 用于多云条件下水体与结构变化初筛，光学时序用于长势复核。",
+      "stages": [
+        {"name": "返青分蘖期", "start": "04-01", "end": "06-15", "factor": 0.50, "focus": "分蘖密度、积水范围与恢复速度", "refs": ["T-01", "T-04"]},
+        {"name": "拔节孕穗期", "start": "06-16", "end": "07-31", "factor": 0.75, "focus": "冠层增长、持续淹水与倒伏风险", "refs": ["T-01", "T-04"]},
+        {"name": "抽穗灌浆期", "start": "08-01", "end": "09-30", "factor": 0.90, "focus": "抽穗后长势下降、穗层结构与灌浆受阻", "refs": ["T-01", "T-04"]},
+        {"name": "成熟收获期", "start": "10-01", "end": "11-30", "factor": 0.65, "focus": "成熟进程、收获延误与次生倒伏", "refs": ["T-04"]}
+      ],
+      "pitfalls": ["云污染会降低光学证据可用性", "水面与湿土的 SAR 响应需结合时序基线判断", "NDVI 长势异常不直接等同于产量损失"]
+    },
+    "corn": {
+      "name": "玉米",
+      "sum_insured_per_mu": 800,
+      "deductible_loss_ratio": 0.10,
+      "total_loss_ratio": 0.80,
+      "indices": ["Sentinel-2 NDVI/EVI", "Sentinel-1 VV/VH", "历史同期长势基线"],
+      "assessment_focus": "拔节、抽雄吐丝和灌浆阶段的冠层变化、洪涝/干旱胁迫及倒伏迹象。",
+      "stages": [
+        {"name": "苗期", "start": "04-01", "end": "05-31", "factor": 0.50, "focus": "出苗完整度、低洼积水与缺苗", "refs": ["T-01", "T-03"]},
+        {"name": "拔节期", "start": "06-01", "end": "07-10", "factor": 0.70, "focus": "冠层扩张速度和水分胁迫", "refs": ["T-01", "T-03"]},
+        {"name": "抽雄吐丝期", "start": "07-11", "end": "08-10", "factor": 0.90, "focus": "关键生殖期胁迫、倒伏和冠层突降", "refs": ["T-01", "T-03"]},
+        {"name": "灌浆成熟期", "start": "08-11", "end": "11-30", "factor": 0.80, "focus": "灌浆期长势衰减和成熟异常", "refs": ["T-01", "T-03"]}
+      ],
+      "pitfalls": ["不同品种和播期会导致物候窗口偏移", "土壤背景对苗期光学指数影响较大", "倒伏需结合 SAR、光学纹理与现场证据复核"]
+    },
+    "wheat": {
+      "name": "小麦",
+      "sum_insured_per_mu": 800,
+      "deductible_loss_ratio": 0.10,
+      "total_loss_ratio": 0.80,
+      "indices": ["Sentinel-2 NDVI/EVI", "Sentinel-1 VV/VH", "历史同期长势基线"],
+      "assessment_focus": "返青拔节、抽穗扬花和灌浆阶段的冻害、旱情、洪涝及倒伏影响。",
+      "stages": [
+        {"name": "越冬返青期", "start": "10-01", "end": "03-15", "factor": 0.45, "focus": "越冬存活、返青完整度与冻害", "refs": ["T-01", "T-02"]},
+        {"name": "拔节孕穗期", "start": "03-16", "end": "04-30", "factor": 0.75, "focus": "冠层快速生长和水分胁迫", "refs": ["T-01", "T-02"]},
+        {"name": "抽穗扬花期", "start": "05-01", "end": "05-31", "factor": 0.90, "focus": "抽穗完整度、倒伏和干热风影响", "refs": ["T-01", "T-02"]},
+        {"name": "灌浆成熟期", "start": "06-01", "end": "06-30", "factor": 0.80, "focus": "灌浆期长势衰减和成熟异常", "refs": ["T-01", "T-02"]}
+      ],
+      "pitfalls": ["跨年保险期间与物候窗口必须按合同核验", "收获前自然衰老不能直接判定为灾损", "冻害和干热风需叠加气象证据"]
+    }
+  }
+}

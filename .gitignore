@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Node and Next.js
+node_modules/
+.next/
+*.tsbuildinfo
+frontend-next/.env.local
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and credentials
+.env
+.env.local
+credentials.json
+*credentials*.json
+*service-account*.json
+*.gee_credentials
+*.privatekey
+*.pem
+*.key
+
+# Runtime data and generated artifacts
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.pid
+outputs/
+reports/
+data/raw_images/
+validation/data/
+*.tif
+*.tiff
+*.geotiff
+
+# User uploads and office artifacts
+*.doc
+*.docx
+validation/report/rendered/
+*.ppt
+*.pptx
+*.pdf
+*.mp4
+*.mov
+*.avi
+~$*
+
+# Curated public product demo
+!demo/
+!demo/Agrisky-AI-Demo.mp4
+
+# Local tools and caches
+.codex/
+.codex-tools/
+.claude/
+.runtime/
+ngrok.exe
+ngrok*.zip
+
+# Stale build snapshots
+frontend-next/.next.stale-*/

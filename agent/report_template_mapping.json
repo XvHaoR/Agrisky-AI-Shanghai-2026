@@ -1,0 +1,92 @@
+{
+  "report_template_version": "v1.0",
+  "sections": [
+    {
+      "id": "case_basic_info",
+      "title": "一、案件基础信息",
+      "fields": [
+        { "report_field": "案件编号", "source": "claim_case.claim_id", "required": true, "notes": "不可手写" },
+        { "report_field": "保单号", "source": "claim_case.policy_id", "required": true, "notes": "不可改写" },
+        { "report_field": "报案时间", "source": "claim_case.reported_at", "required": false, "notes": "无则留空" },
+        { "report_field": "灾害类型", "source": "claim_case.disaster_type", "required": true, "notes": "只能用枚举值映射" },
+        { "report_field": "灾害日期", "source": "claim_case.loss_date", "required": true, "notes": "不允许模糊表述" },
+        { "report_field": "作物类型", "source": "insured_plot.crop_type", "required": true, "notes": "来自承保地块信息" }
+      ]
+    },
+    {
+      "id": "insured_plot_info",
+      "title": "二、承保地块信息",
+      "fields": [
+        { "report_field": "地块编号", "source": "insured_plot.plot_id", "required": true, "notes": "直接引用" },
+        { "report_field": "投保面积（亩）", "source": "insured_plot.insured_area_mu", "required": true, "notes": "不允许 Agent 自己换算" },
+        { "report_field": "边界版本", "source": "insured_plot.geom_version", "required": true, "notes": "用于追溯" }
+      ]
+    },
+    {
+      "id": "disaster_overview",
+      "title": "三、灾情概述",
+      "fields": [
+        { "report_field": "灾情摘要", "source": "agent_summary.disaster_summary", "required": true, "notes": "只能基于结构化结果生成" },
+        { "report_field": "卫星初筛结论", "source": "screening_result.summary", "required": false, "notes": "只作辅助描述" }
+      ]
+    },
+    {
+      "id": "evidence_images",
+      "title": "四、影像与证据说明",
+      "fields": [
+        { "report_field": "卫星证据列表", "source": "screening_result.reference_assets", "required": false },
+        { "report_field": "现场照片编号", "source": "asset_files.photo_ids", "required": false }
+      ]
+    },
+    {
+      "id": "compliance_result",
+      "title": "五、合规面积核验结果",
+      "fields": [
+        { "report_field": "受灾有效面积（亩）", "source": "compliance_result.valid_damage_area", "required": true, "notes": "⚡ 关键字段 —— 必须 1:1 引用，严禁改写" },
+        { "report_field": "受灾比例", "source": "compliance_result.damage_ratio", "required": true, "notes": "⚡ 关键字段 —— 必须 1:1 引用" },
+        { "report_field": "剔除面积（亩）", "source": "compliance_result.excluded_area", "required": true, "notes": "必须可审计" },
+        { "report_field": "剔除日志", "source": "compliance_result.clip_log", "required": true, "notes": "逐条展示" }
+      ]
+    },
+    {
+      "id": "rule_suggestion",
+      "title": "六、规则引擎建议",
+      "fields": [
+        { "report_field": "建议风险等级", "source": "rule_result.risk_level", "required": true, "notes": "只能写'建议'" },
+        { "report_field": "是否必须复核", "source": "rule_result.review_required", "required": true, "notes": "原样保留" },
+        { "report_field": "规则依据", "source": "rule_result.rule_trace", "required": true, "notes": "分条展示" },
+        { "report_field": "规则版本号", "source": "rule_result.rule_version", "required": true, "notes": "必须写入" }
+      ]
+    },
+    {
+      "id": "risk_flags",
+      "title": "七、风险提示",
+      "fields": [
+        { "report_field": "风险标记", "source": "agent_output.risk_flags", "required": true, "notes": "只能基于已有结果整理" },
+        { "report_field": "注意事项", "source": "agent_output.notes", "required": true, "notes": "不得自行扩张业务结论" }
+      ]
+    },
+    {
+      "id": "human_review",
+      "title": "八、人工审核意见区",
+      "fields": [
+        { "report_field": "审核结论", "source": "human_review.review_status", "required": true, "notes": "人工填写" },
+        { "report_field": "审核意见", "source": "human_review.review_comment", "required": true, "notes": "人工填写" },
+        { "report_field": "审核人", "source": "human_review.reviewer_name", "required": true, "notes": "人工填写" },
+        { "report_field": "审核时间", "source": "human_review.reviewed_at", "required": true, "notes": "人工填写" }
+      ]
+    }
+  ],
+  "field_classes": {
+    "direct": "直接字段 —— 来自业务表，Agent 不能改",
+    "tool_result": "工具结果字段 —— 来自对应工具返回，Agent 只能 1:1 引用",
+    "human_review": "人工审核字段 —— 来自审核动作记录，Agent 不能代填"
+  },
+  "report_rules": [
+    "不允许新增第 9 个自由章节",
+    "不允许字段无来源（source）",
+    "不允许关键数值自由改写",
+    "不允许建议结论伪装成最终结论",
+    "所有数值字段必须标注来源标签"
+  ]
+}

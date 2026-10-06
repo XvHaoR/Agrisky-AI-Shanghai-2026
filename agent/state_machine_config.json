@@ -1,0 +1,78 @@
+{
+  "state_machine": {
+    "description": "Agrisky AI 案件状态机 —— 控制案件全生命周期流转",
+    "states": [
+      "INIT",
+      "MATERIAL_CHECK",
+      "PREPROCESS_READY",
+      "SCREENING_DONE",
+      "COMPLIANCE_DONE",
+      "RULE_DONE",
+      "REPORT_DRAFTED",
+      "HUMAN_REVIEW",
+      "ARCHIVED"
+    ],
+    "forward_transitions": {
+      "INIT": ["MATERIAL_CHECK"],
+      "MATERIAL_CHECK": ["PREPROCESS_READY"],
+      "PREPROCESS_READY": ["SCREENING_DONE"],
+      "SCREENING_DONE": ["COMPLIANCE_DONE"],
+      "COMPLIANCE_DONE": ["RULE_DONE"],
+      "RULE_DONE": ["REPORT_DRAFTED", "HUMAN_REVIEW"],
+      "REPORT_DRAFTED": ["HUMAN_REVIEW"],
+      "HUMAN_REVIEW": ["ARCHIVED"],
+      "ARCHIVED": []
+    },
+    "allowed_rollbacks": {
+      "HUMAN_REVIEW": [
+        "MATERIAL_CHECK",
+        "PREPROCESS_READY",
+        "SCREENING_DONE",
+        "COMPLIANCE_DONE",
+        "RULE_DONE",
+        "REPORT_DRAFTED"
+      ]
+    },
+    "forbidden_skips": [
+      { "from": "INIT", "to": "SCREENING_DONE" },
+      { "from": "MATERIAL_CHECK", "to": "RULE_DONE" },
+      { "from": "COMPLIANCE_DONE", "to": "ARCHIVED" },
+      { "from": "RULE_DONE", "to": "ARCHIVED" },
+      { "from": "REPORT_DRAFTED", "to": "ARCHIVED" }
+    ],
+    "hard_rule": "没有人工审核通过，任何案件不得进入 ARCHIVED"
+  },
+  "state_tool_mapping": {
+    "INIT": ["create_claim"],
+    "MATERIAL_CHECK": ["validate_materials"],
+    "PREPROCESS_READY": ["run_satellite_screening"],
+    "SCREENING_DONE": ["run_compliance_estimate"],
+    "COMPLIANCE_DONE": ["run_rule_engine"],
+    "RULE_DONE": ["generate_report"],
+    "REPORT_DRAFTED": [],
+    "HUMAN_REVIEW": [],
+    "ARCHIVED": []
+  },
+  "exit_conditions": {
+    "INIT": ["policy_id 已有", "disaster_type 已有", "loss_date 已有", "crop_type 已有", "plot_id 或 insured_geom 至少有一个"],
+    "MATERIAL_CHECK": ["在册保单存在", "承保边界有效", "案件必填要素完整", "无阻断性问题"],
+    "PREPROCESS_READY": ["可执行卫星初筛"],
+    "SCREENING_DONE": ["疑似受灾范围已生成", "已决定后续路径"],
+    "COMPLIANCE_DONE": ["valid_damage_area 已生成", "damage_ratio 已生成", "clip_log 已生成"],
+    "RULE_DONE": ["risk_level 已生成", "review_required 已生成", "rule_version 已生成"],
+    "REPORT_DRAFTED": ["报告草稿已生成", "待审核清单已列出"],
+    "HUMAN_REVIEW": ["审核通过 → ARCHIVED", "审核驳回 → 回退到指定状态"],
+    "ARCHIVED": ["案件已结案归档，只允许查询"]
+  },
+  "risk_thresholds": {
+    "flood": { "high": 0.40, "medium": 0.15 },
+    "drought": { "high": 0.50, "medium": 0.20 },
+    "hail": { "high": 0.30, "medium": 0.10 },
+    "typhoon": { "high": 0.40, "medium": 0.15 },
+    "pest": { "high": 0.35, "medium": 0.10 },
+    "frost": { "high": 0.40, "medium": 0.15 },
+    "other": { "high": 0.40, "medium": 0.20 }
+  },
+  "high_payout_threshold_yuan": 50000,
+  "high_payout_rule": "预估理赔金额 ≥ 5万元时，无论受损比例，强制升级为高风险 + 必须人工复核"
+}

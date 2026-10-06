@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agrisky AI — OpenAI-compatible 工具注册表",
+  "description": "白名单工具注册表，与 agent/agent_runtime.py 的 TOOLS 保持一致。智能体可读取本地案件库和在册边界摘要、分析可见案件并受控推进完整理赔流程；地块坐标只供后端引擎内部使用。登录投保人只能办理名下保单，管理员可分析全部案件；智能体到报告草稿即止，归档须人工审核。",
+  "base_url": "http://127.0.0.1:8000/api/v1",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "analyze_claims",
+        "description": "读取本地案件库并分析当前可见的全部案件：状态分布、边界就绪情况、风险、赔付与下一步调度优先级。管理员/分析员看全局，投保人仅看名下案件。只读。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "state": {"type": "string", "description": "可选；仅分析指定状态"},
+            "limit": {"type": "integer", "minimum": 1, "maximum": 500, "description": "最多读取案件数，默认 200"}
+          }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_case_details",
+        "description": "读取一个案件及其已持久化分析结果的安全摘要，包括长势、减产率、合规、赔付、风险和报告状态。只读。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "inspect_policy_boundary",
+        "description": "读取本地保单库中的在册边界摘要：版本、面积、几何类型、要素数和 canonical_geometry_v1 SHA-256；原始坐标不进入模型上下文。只读。",
+        "parameters": {"type": "object", "properties": {"policy_id": {"type": "string"}}, "required": ["policy_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "inspect_policy_contract",
+        "description": "读取保单冻结的模拟保险合同摘要、保险期间、保险责任、赔款参数、合同版本与条款编号；用于解释理赔依据。只读。",
+        "parameters": {"type": "object", "properties": {"policy_id": {"type": "string"}}, "required": ["policy_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "list_case_documents",
+        "description": "材料清单专用工具：读取案件已上传材料的类型、解析状态、缺失材料和阻断数量。用户询问逐份附件或文件清单时调用。只读，不向模型发送原始文件或敏感全文。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "compare_case_materials",
+        "description": "材料核验首选工具：用户询问材料或资料是否齐全、缺少什么、字段来源、字段冲突或资料风险时必须调用。核对提取字段与在册保单及案件字段的一致性，返回缺失项、冲突、置信度和证据引用。不得用 get_case_details 替代。只读。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "explain_material_findings",
+        "description": "解释案件材料中的开放问题及下一步人工处理要求；只能引用服务端已有 findings，不得自行判定材料有效。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_claim_workflow",
+        "description": "按状态机自动调度一个已有案件：材料校验→卫星初筛→当前长势→多源减产率→合规→赔付→规则评级→报告草稿。默认执行当前长势；到人工审核前停止，绝不自动归档。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "claim_id": {"type": "string"},
+            "include_growth": {"type": "boolean", "description": "是否运行当前长势分析，默认 true"},
+            "include_historical": {"type": "boolean", "description": "是否同时运行历史季度长势，默认 false"}
+          },
+          "required": ["claim_id"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "create_claim",
+        "description": "新建理赔案件（INIT→MATERIAL_CHECK）。作物可从保单库带出；登录投保人只能办理名下保单。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "policy_id": {"type": "string"},
+            "disaster_type": {"type": "string", "enum": ["flood", "drought", "hail", "typhoon", "pest", "frost", "other"]},
+            "loss_date": {"type": "string", "description": "YYYY-MM-DD"},
+            "crop_type": {"type": "string", "description": "可省略，从保单库带出"},
+            "plot_id": {"type": "string"}
+          },
+          "required": ["policy_id", "disaster_type", "loss_date"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "validate_materials",
+        "description": "校验案件要素与在册保单边界（MATERIAL_CHECK→PREPROCESS_READY）；当前流程不要求上传理赔文件。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_satellite_screening",
+        "description": "卫星 SAR 初筛，用保单在册地块边界（PREPROCESS_READY→SCREENING_DONE）。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_loss_assessment",
+        "description": "多源遥感减产率评估(NDVI/EVI2/NDWI/NDRE + GPP/NPP 异常 + VCI)，用保单在册边界。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_compliance",
+        "description": "合规面积核验：承保面积(在册边界)×减产率（→COMPLIANCE_DONE）。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_payout_estimate",
+        "description": "赔付测算：按保额/起赔点/赔付曲线得预估赔款（COMPLIANCE_DONE 后）。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_rule_engine",
+        "description": "规则评级：服务端读取已保存的合规比例、案件作物和赔付结果（COMPLIANCE_DONE→RULE_DONE）。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "claim_id": {"type": "string"}
+          },
+          "required": ["claim_id"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generate_report",
+        "description": "生成 DOCX 报告草稿（RULE_DONE→REPORT_DRAFTED）。之后必须停下交人工审核。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generate_excel_report",
+        "description": "生成受灾评估 Excel(.xlsx) 表，含各源减产率/合规/赔付明细。合规之后可随时出表。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_growth_analysis",
+        "description": "作物长势分析：凭 claim_id 自动取保单在册地块边界，运行 NDVI 分级（差/一般/中/良/优）。常用于生成报告前或用户想了解当前长势。卫星初筛后随时可调。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}, "start_date": {"type": "string", "description": "可选；留空按出险日期所在季度"}, "end_date": {"type": "string", "description": "可选；与 start_date 同时提供，截止日按包含处理"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_historical_ndvi",
+        "description": "历史季度长势：按案件在册边界计算真实 Sentinel-2 季度 NDVI，生成跨年趋势、年度 2×2 图和 DOCX；失败不降级模拟。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}, "start_year": {"type": "integer", "minimum": 2017, "description": "可选，默认 2022"}, "end_year": {"type": "integer", "minimum": 2017, "description": "可选，默认当前年份"}, "max_cloud_pct": {"type": "number", "minimum": 0, "maximum": 100, "description": "可选，默认 30"}}, "required": ["claim_id"]}
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "run_parcel_growth",
+        "description": "分地块长势：使用案件已有 NDVI 和人工确认地块，输出 parcel_id/feature_id 级覆盖率、分级面积与异常。",
+        "parameters": {"type": "object", "properties": {"claim_id": {"type": "string"}}, "required": ["claim_id"]}
+      }
+    }
+  ]
+}

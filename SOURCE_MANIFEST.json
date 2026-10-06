@@ -1,0 +1,672 @@
+{
+  "release": "v1.0.0-shanghai",
+  "created": "2026-10-06",
+  "base": "Team World Open-source AI Challenge semifinal project",
+  "scope": "source, synthetic fixtures, public benchmark results and documentation; no runtime data",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "521af8b4992ea96df9996633ec3ed88fb91851754fe9f062314635bef41fe77b"
+    },
+    {
+      "path": ".env.example",
+      "sha256": "9b937bec1b0580b9c4960472194331313ab3f1ac56db6cc4771024bd0278432a"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "71bd1bde4be3301e013d86ce3e33705f4921e50b3e7f655726eabb9480c3feba"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "1c8fa403264fcc83b8d743379602158de59fe41c4d02d4c64712fabc9eb4a903"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "5dd2ce98441b3efaf91640deac4bdf99340e4af4e96c548ff0b7c1129fcd9028"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "a316f56fb06a2b2845ac08f4f24a0cfc89281d60099c85caa88d6386e3f89004"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "02e964af83d629a70ea2d27d396f553dc8870cfd395074b7cc4244ce57336176"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "f4b1b9279755765617fbfac3e0969da6455ab9897cb35e71b6ee3e702429ad63"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "48a1c4261676ec502be503da08a32597fbed94ebc477b72daa2faf76630c6511"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f9322b5c655ccc886bff1372712b0d68801757e35b4fb2c9e432746e1cb5d5f1"
+    },
+    {
+      "path": "README_UPSTREAM.md",
+      "sha256": "cb4813bfe71cb6542b3f406258a49c33e0d68c87f860c28377b8781e2d370527"
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "573871877b1a4e3a71f6cbb2a341c427b57ba8cb733f0603a3e0517f6e47b1ef"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "eb38c3f93c82620870abbb56f4a7a838f39883084c0a57d4b27eb854227689b9"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "e92368d32d87d1269ac54f0dac50b86bb5fe70269347aba5fdaca49ef97d19ac"
+    },
+    {
+      "path": "agent/agent_runtime.py",
+      "sha256": "2aba2aa3db2fe602b2c89faaf06df7744728da58009e70a3df274ddb999190eb"
+    },
+    {
+      "path": "agent/knowledge/01_减产率与定损.md",
+      "sha256": "86cf261d009e1cb615abc8a494f108b9b0ca6c4c9ef4e4437ff7cbc1fb4a857c"
+    },
+    {
+      "path": "agent/knowledge/02_灾种遥感解译.md",
+      "sha256": "6eafe7b651d489d2c68752278988f6560f9f23c72424fa0e5fb5acbbd53a3fa4"
+    },
+    {
+      "path": "agent/knowledge/03_遥感产品与风控.md",
+      "sha256": "d1fe65520f488e0f40a38d82cb22f59c2fa9d73de26bd925f787e2cf7be2f29e"
+    },
+    {
+      "path": "agent/knowledge_base.py",
+      "sha256": "2ad9eb20adc6a787c9a3fd2c85c345263bd82e0fc30d088dac878ac0f7e2b781"
+    },
+    {
+      "path": "agent/report_template_mapping.json",
+      "sha256": "bf7b5396571fec48e4efee2573f47a4b02204bade8adae41c273d8c6bad254a2"
+    },
+    {
+      "path": "agent/state_machine_config.json",
+      "sha256": "78390d8ee4f49ef1789f800a4634711da3ac7fa8142ac4fc2cb0f5c5f90bab3c"
+    },
+    {
+      "path": "agent/system_prompt.md",
+      "sha256": "307ef801770927da5cb81526d2d704ee52b403dec8c643533f50d75bb44beecc"
+    },
+    {
+      "path": "agent/tools_schema.json",
+      "sha256": "b82672e988e822d911fe74c2ae5b8b2bf13c0b04515a48033102acf7cbef2c7b"
+    },
+    {
+      "path": "api_gateway/compliance_library.py",
+      "sha256": "f3a0d9cd8636478e45f596cc8f5a97b75d0d387feb5c66846a82de05243812c6"
+    },
+    {
+      "path": "api_gateway/contract_engine.py",
+      "sha256": "b5fc1f6e52d2ff04c9c890ef38cd0ab5fb1b55e572ac869295bdd564764a14c5"
+    },
+    {
+      "path": "api_gateway/document_intelligence.py",
+      "sha256": "eda49c5192ddd0e867761c6faac5cf5aa666d30ea7d61b4be0a695456f442b1a"
+    },
+    {
+      "path": "api_gateway/excel_report.py",
+      "sha256": "62db621edc3897cbf94e42de14a5e3cb6b354e09e4462544bcdc4e49bd86c68a"
+    },
+    {
+      "path": "api_gateway/growth_analysis.py",
+      "sha256": "f2d22b093c3ef186c9dc2bd1e9d46462b2b041d2119ae7aa2e7817a824bd0e7c"
+    },
+    {
+      "path": "api_gateway/historical_ndvi.py",
+      "sha256": "c854c5361657b0568ff3d2d46dbd554d652715757a66e3a9f41ee66566ec873f"
+    },
+    {
+      "path": "api_gateway/historical_ndvi_report.py",
+      "sha256": "720fd3c25692f019f049f303ca62e02085b4a571d1a92d9c36e0ff27240a08d4"
+    },
+    {
+      "path": "api_gateway/loss_engine.py",
+      "sha256": "36c136f0d9d67bd6165d2c9348a9a6e132711506721c155c21844ea628b2df82"
+    },
+    {
+      "path": "api_gateway/main.py",
+      "sha256": "7529e1d78fa2a54d0400f2c06e7506207fb987c385575d98e1ecd11eba7dcb07"
+    },
+    {
+      "path": "api_gateway/map_runtime.py",
+      "sha256": "084eeb2b82eb8752dc0a39ac16d31d74d086fea7d8091b936205c9b417b40499"
+    },
+    {
+      "path": "api_gateway/parcel_growth.py",
+      "sha256": "0bab4fb36360fc1b711318488741665db6b0a37d7f315c9f6dc5cb98cce8c11a"
+    },
+    {
+      "path": "api_gateway/parcel_preflight.py",
+      "sha256": "2aacc0dbbb4802d50d2014dc7d3dd6e57c2499c71427edb2872b8bcee3c56d42"
+    },
+    {
+      "path": "api_gateway/payout_engine.py",
+      "sha256": "dc2613b1b32103b39ccf8676e8c16fbc9384996242d8c3fe9626191f65128b4e"
+    },
+    {
+      "path": "api_gateway/policy_config.py",
+      "sha256": "e5920223ba1e67658f7c20f9184f50d0d72286c9cfd9bd9e276beef47cf7b01d"
+    },
+    {
+      "path": "api_gateway/report_generator.py",
+      "sha256": "e6cc6e0ff39e42fb53fe19f1c4e2d94bd43ca1addc0b9f62b29670d579647435"
+    },
+    {
+      "path": "api_gateway/requirements.txt",
+      "sha256": "b59b64f2cd271e77633ea4462cd309bfba5d5bd57460031d7af1bc8561cea469"
+    },
+    {
+      "path": "api_gateway/schemas.py",
+      "sha256": "37847ee3a821a02e35aaf01d94795e433f7e9d82d2570f6e99a6da8bef23d077"
+    },
+    {
+      "path": "api_gateway/sentinel2_ndvi.py",
+      "sha256": "a3bc48309727a756ecf9267fa1623d2fdf7f4bb4fc4c31d58d7bf73739c10e63"
+    },
+    {
+      "path": "api_gateway/spatial_utils.py",
+      "sha256": "23178308a0c81cf9bf884a4e34b6ae5f66735840271fb90881f5d7f38ca27931"
+    },
+    {
+      "path": "api_gateway/state_machine.py",
+      "sha256": "2c8d3d965e5865679b48b0e86da42f52cc14a96736dc157928f904c611d36bbe"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/LICENSE",
+      "sha256": "53e8dc25862014e4324741ca18fbe3611e11d42ef69f59f86ea8c5389647d4cb"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/README.md",
+      "sha256": "ce4dda9b64dc364af742ee05e7951b31bca74be5ccfb2e65c0758e307318abd6"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/images/layers-2x.png",
+      "sha256": "066daca850d8ffbef007af00b06eac0015728dee279c51f3cb6c716df7c42edf"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/images/layers.png",
+      "sha256": "1dbbe9d028e292f36fcba8f8b3a28d5e8932754fc2215b9ac69e4cdecf5107c6"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/images/marker-icon-2x.png",
+      "sha256": "00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/images/marker-icon.png",
+      "sha256": "574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/images/marker-shadow.png",
+      "sha256": "264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/leaflet.css",
+      "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6"
+    },
+    {
+      "path": "api_gateway/vendor/leaflet/leaflet.js",
+      "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a"
+    },
+    {
+      "path": "config/crop_claim_schemes.json",
+      "sha256": "60fbfb47b6857cc3f66d281bab065121e9f937f1b2a1f8b350bb2aa9aaf8580c"
+    },
+    {
+      "path": "config/payout_rules.yaml",
+      "sha256": "c8eb7e0754b6fd6b33ad995f79035048b97e240c41066f5aed08366ce742e923"
+    },
+    {
+      "path": "config/risk_rules.yaml",
+      "sha256": "7a9426eae744dfc7af48ac957cf573523c83dbd7846bdd099faf25218990cb6b"
+    },
+    {
+      "path": "data/sample_cases/damage_area_sample.geojson",
+      "sha256": "432ad4766ea18dc71e8ec9b1e021af4812504775b4cec55ce18e69900cf4185c"
+    },
+    {
+      "path": "data/sample_cases/insured_boundary_sample.geojson",
+      "sha256": "d70676ef902cdd1cfcbb6b9b810f49819e5cbf4d3dc2bcc16a805fedd466c307"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "e51427b0d54b7f87a2cb2d0eca56f1606f4794468658a9468785a50ab6e63845"
+    },
+    {
+      "path": "docs/REPRODUCE.md",
+      "sha256": "fb4b03f85fb8e541fe2a52048a2b34f6ed5bc848f665b74792aa045cc6d44c75"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "sha256": "2a56c3223e9b336273d9e392a5d2dc564af783abcf9561d90a9f974ab70e18c9"
+    },
+    {
+      "path": "docs/dependencies/npm-lock.json",
+      "sha256": "fae695341de184ae5d2a8bcef1dc0f98f4df2a48c70fdb4eecdd28cefb30b0b7"
+    },
+    {
+      "path": "docs/dependencies/python-direct.json",
+      "sha256": "403d929475473c6c5dadb772e5dffa9e5840d14222dd1fa43ad9891c90efdfee"
+    },
+    {
+      "path": "frontend-next/Dockerfile",
+      "sha256": "acb8f102368d1c089ffe2aa9c6ab1a9fc65b8513c3b0242cb9a2f5e8ef2e7e85"
+    },
+    {
+      "path": "frontend-next/app/_components/AdminGate.tsx",
+      "sha256": "a189f82eff862cf86de18848cdc7e9bec4898db8aa42de76de336bfb5c857d60"
+    },
+    {
+      "path": "frontend-next/app/_components/AppNav.tsx",
+      "sha256": "344dd42e0e5c73678227ae6fa18d7914a5ea77820c15112ef7458d592ec01688"
+    },
+    {
+      "path": "frontend-next/app/_components/LoginScreen.tsx",
+      "sha256": "ac0517d728d06cb8f61fdcd5bad2f7344369272b445e42d68bf25d72991248bf"
+    },
+    {
+      "path": "frontend-next/app/_lib/api-base.ts",
+      "sha256": "2f393a9b5f06028dfce9b0c5f8839a4b91d16034676e3d4ca7a22a2080cba2a3"
+    },
+    {
+      "path": "frontend-next/app/_lib/auth.ts",
+      "sha256": "2123d1fb52f44570fcb761c3610baae9acc70ecb14d89e26f5346af05856176e"
+    },
+    {
+      "path": "frontend-next/app/_lib/resolve-api-base.d.mts",
+      "sha256": "f73e695979f5c6d666b02d0825eece434bc9547a37dbdc85a82525309e2b278e"
+    },
+    {
+      "path": "frontend-next/app/_lib/resolve-api-base.mjs",
+      "sha256": "36e77e38c9cd0b07b5164d9b1bb2cae215842d40f2025fae9d35d61196af244b"
+    },
+    {
+      "path": "frontend-next/app/agent/page.tsx",
+      "sha256": "3f9528b52eb48825dfe4cbd81dd0058a8cfb43182d5dc32c5dbd1d66c79095bc"
+    },
+    {
+      "path": "frontend-next/app/cases/layout.tsx",
+      "sha256": "1c07fc0db8e40d2bf77fa0e2c004700716484055b4709b8f331acba5146b11c1"
+    },
+    {
+      "path": "frontend-next/app/cases/page.tsx",
+      "sha256": "5824d2e57ecd8f5f689684a5a1385b239c9574acc2a7713d49f6b154ce3ec7d5"
+    },
+    {
+      "path": "frontend-next/app/claims/components/ClaimsLayout.tsx",
+      "sha256": "702533eda275f59896e268af6533c207f7ea74bf451e48b449cddd78b9ee73b2"
+    },
+    {
+      "path": "frontend-next/app/claims/components/EvidenceViewer.module.css",
+      "sha256": "a305ebaad20d2d1615c16518517bb6d02229166fad52d0d5bf0da8f017eb882e"
+    },
+    {
+      "path": "frontend-next/app/claims/components/EvidenceViewer.tsx",
+      "sha256": "a0d19b09063a48a0ada474d79d8782af45de3347fcc48a569889c668a87114f5"
+    },
+    {
+      "path": "frontend-next/app/claims/layout.tsx",
+      "sha256": "1bdec1e11b844821b2bdbcc3069465233f7ac51437fd8c8b437222d0057a9d4d"
+    },
+    {
+      "path": "frontend-next/app/claims/page.tsx",
+      "sha256": "3900ea585abbb19c1a07b9329dbbe4a0a15099a2e2f3e375fbb6f5285560b994"
+    },
+    {
+      "path": "frontend-next/app/compliance/page.tsx",
+      "sha256": "75db97d34961eb3fb21ce5dbf08c3781c0b1135f31d7eee5fc8ff3fde756b559"
+    },
+    {
+      "path": "frontend-next/app/globals.css",
+      "sha256": "738bc737353e437e18e7e146e01df3ecd6f0a704ba597c570611f704f5e95cd7"
+    },
+    {
+      "path": "frontend-next/app/layout.tsx",
+      "sha256": "e8dc27addb4c3f50ff065305f1f89c2250872f12c0e9011e541fc4339dab8afb"
+    },
+    {
+      "path": "frontend-next/app/page.tsx",
+      "sha256": "6baed3d67279d3826a5fdcdd1d931ad2a4aaf468863ecf8fa89c3eeacdd47b69"
+    },
+    {
+      "path": "frontend-next/app/policies/page.tsx",
+      "sha256": "cbdab404b30b9284bfbbe30283d82b9c2dbc30fa869a634ed62447c7a0fe188f"
+    },
+    {
+      "path": "frontend-next/app/portal/layout.tsx",
+      "sha256": "753d16fdd49183f58cc6f324d11d80d96790b790ea971972963d863b4adbb3c5"
+    },
+    {
+      "path": "frontend-next/app/portal/page.tsx",
+      "sha256": "30d592d4917333221c512889fe31aa646c54addb69d597e54ef986737bd0457a"
+    },
+    {
+      "path": "frontend-next/app/reports/page.tsx",
+      "sha256": "84c5261164d4da95361ead16c3bcfd1c07dcce577f9cc3c1a246debe8e4d60d2"
+    },
+    {
+      "path": "frontend-next/eslint.config.mjs",
+      "sha256": "679f2eb479cb8fc3feccdeaf9745767537ec607ed4a67e8cbce24e4ce9971c85"
+    },
+    {
+      "path": "frontend-next/next-env.d.ts",
+      "sha256": "f4e8976c19fc926644d72610bf1058bd6bf52add97e46a02bc0b912a751625c0"
+    },
+    {
+      "path": "frontend-next/next.config.mjs",
+      "sha256": "eadab2495c2d4c664fbc5a475a541461173c6db5c5acfe328d05bb6483c6208e"
+    },
+    {
+      "path": "frontend-next/package-lock.json",
+      "sha256": "7e7d5ab94606a4aa8fe6a77e921cbb884f086b81781b8db010f73a99a12f63bd"
+    },
+    {
+      "path": "frontend-next/package.json",
+      "sha256": "896fbd0ddf1c2622b8576ab0de351314efce58e646adbe6ca842a6b306dea42e"
+    },
+    {
+      "path": "frontend-next/postcss.config.js",
+      "sha256": "fa650b380adfabb151a0b352f7135e107e6352345f899060f1c5c231228f94bf"
+    },
+    {
+      "path": "frontend-next/scripts/resolve-api-base.test.mjs",
+      "sha256": "21cab7454aafca4e52e896048c20e0d466dc4680888dd6e92185cb3d2c6084d3"
+    },
+    {
+      "path": "frontend-next/scripts/tailwind-layout.test.mjs",
+      "sha256": "5781ad5ef583f8f89aab9a39158f34f0334b08e44b0cabac29135d264ce266b7"
+    },
+    {
+      "path": "frontend-next/scripts/validate-api-origin.mjs",
+      "sha256": "fe90df55dedd33bd2ff5a7135a49bb16576d526ec1a751a0704f83608ebd7fb5"
+    },
+    {
+      "path": "frontend-next/scripts/validate-api-origin.test.mjs",
+      "sha256": "01ac76dba07ce650953e58670e875c57e8ce111ad4dcb0f104114b06e6b4a6eb"
+    },
+    {
+      "path": "frontend-next/tailwind.config.js",
+      "sha256": "a607533985cefa426e6bad539ca67ee88c87e9b4eb0b4ca9812c42a811b5b485"
+    },
+    {
+      "path": "frontend-next/tsconfig.json",
+      "sha256": "ce34bbd221717ba633be56191345f801e66025be7d165e6b35d873c75d6439e0"
+    },
+    {
+      "path": "legal_corpus/manifest.json",
+      "sha256": "0db8ff2a41ddc0df981ae158086c0597b7934b7c31b59d2019a4219d10501c2d"
+    },
+    {
+      "path": "legal_corpus/normalized/L-01-农业保险条例.md",
+      "sha256": "1719b50ce9a5109d2bb6e7d4c1588e1f735a288d3549170317ba3ebc5d6d3031"
+    },
+    {
+      "path": "legal_corpus/normalized/L-02-农业保险承保理赔管理办法.md",
+      "sha256": "ffb9e9bc66d0ac4d04a578caa6b0eb84542ce71df6908358b8d1c48817db132a"
+    },
+    {
+      "path": "legal_corpus/normalized/L-03-中华人民共和国保险法.md",
+      "sha256": "ac8f1c636868d14dbd8daeee5cb58c35769a166621ad2a870ada67ee1b27f3c9"
+    },
+    {
+      "path": "legal_corpus/normalized/L-04-中华人民共和国农业法.md",
+      "sha256": "7a0836eff41d893932498e0e0be233b220273f20b9b9b67dd28b32ef79e88f91"
+    },
+    {
+      "path": "legal_corpus/normalized/L-05-财产保险公司保险条款和保险费率管理办法.md",
+      "sha256": "99de74216cae875ad2f1e6d339dfe41638404b17f3158d542b171d52de326a3d"
+    },
+    {
+      "path": "legal_corpus/normalized/L-06-农业保险大灾风险准备金管理办法.md",
+      "sha256": "e50c1916463a17d3e7f12b8f62b3c7b3bddca7dcb0910967f44b9d9b785e25f5"
+    },
+    {
+      "path": "legal_corpus/official/L-01-农业保险条例.html",
+      "sha256": "05c486f6ec8fe00f21ddb970548fefae564b92f626311d7bd679f1f4efff0cbf"
+    },
+    {
+      "path": "legal_corpus/official/L-02-农业保险承保理赔管理办法.pdf",
+      "sha256": "6641b4ac15bea3be1539f32e0fe1050d17ade7ba75eb3e336c1ed94a2042295c"
+    },
+    {
+      "path": "legal_corpus/official/L-03-中华人民共和国保险法.html",
+      "sha256": "47b5aa02bfc55da3d65cb0aff943c7a763b9f879004f6f776fe7b5db8691b1a8"
+    },
+    {
+      "path": "legal_corpus/official/L-04-中华人民共和国农业法.pdf",
+      "sha256": "d66db19e1d567f49b99e647ee5e16f14fc30a28b13c582a941a64b503d00d49c"
+    },
+    {
+      "path": "legal_corpus/official/L-05-财产保险公司保险条款和保险费率管理办法.html",
+      "sha256": "91e1c06334368d99e7660884916a13d0ebf994cfc81cfad6044297bb468fe4be"
+    },
+    {
+      "path": "legal_corpus/official/L-06-农业保险大灾风险准备金管理办法.html",
+      "sha256": "9b4038778dea91faad581cb78a9888e5d9e241caab33a5f4b91c4615e8ca3aa3"
+    },
+    {
+      "path": "legal_corpus/report_citations.json",
+      "sha256": "595c25041cc2c253696da88a88a2e4cb864f442d964d387f8fee394c4faeecbe"
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "0ae0495f42ec83ca7804606e0c63d2e77feafd98c6f45708f49e0ebba206079a"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "sha256": "d804bc8d3b272f0aa0fe73243b521a1bd62b3a56a4e9bef18c39787141396fb4"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "18c84f4d27e0062099892d8959d81722692ace0e72f7567c8871c262aeb3a45f"
+    },
+    {
+      "path": "scripts/check_windows.ps1",
+      "sha256": "362baca757e998cffa647a381d996250dc0d9171c668eaf27bdbc3b6d3a58e3d"
+    },
+    {
+      "path": "scripts/demo_replay.py",
+      "sha256": "a0f3da1e8f4c9eb01b9c79433d2fc72fb63d445a2aabeae076a299d31c1c1575"
+    },
+    {
+      "path": "scripts/demo_server.py",
+      "sha256": "2dbf0e6ea0aa0315e24045d54040d7185b697a8a8df7ac715c9e248afb04e9ef"
+    },
+    {
+      "path": "scripts/dev_windows.ps1",
+      "sha256": "8fa2646f2399cf2cbc5052d15f5a6e77d5e3b6608f67f0d2c6d41c47bc0e2067"
+    },
+    {
+      "path": "scripts/setup_windows.ps1",
+      "sha256": "3cd8127b81022a6bf5a691e840898dbf1118e26a0469c091b766cde9c3f78c30"
+    },
+    {
+      "path": "space_engine/gee_auth.py",
+      "sha256": "1281e768a1b26ee65d111877c738667b06d7eaf30d3a6b81532154c245b1fd3d"
+    },
+    {
+      "path": "space_engine/optical_ndvi.py",
+      "sha256": "37c41e9634a7e385c0d600ae3d4f118b4aa74a1f972c7136d80151135741c653"
+    },
+    {
+      "path": "space_engine/requirements.txt",
+      "sha256": "807c1aceb7cd613256d8e977e28ac21d2f74253dab0bc47d1e7e026a990341fc"
+    },
+    {
+      "path": "space_engine/sar_flood.py",
+      "sha256": "f278eac5d2f4201899e5c77180850bfd905b193bfcc1ccb9a7e444d12c0c24b4"
+    },
+    {
+      "path": "space_engine/veg_products.py",
+      "sha256": "271317d230bc835df35f88efdcf09b9fd720748490fa539815e13d2d8b9dc9d3"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "038d244c12c6b8a47ab57018c3017002ca6919401c81317d1900dcab57a2bb5d"
+    },
+    {
+      "path": "tests/test_agent_security.py",
+      "sha256": "881e24bdabcf2b21991ec265c6fdb5bcc47324f6277f863ed70f20e3bef8a4b3"
+    },
+    {
+      "path": "tests/test_api_gateway.py",
+      "sha256": "922d44174d31e0ed6c37b88eb9f2d527d2e672ffc4f1463ea5a8598f8c6edc17"
+    },
+    {
+      "path": "tests/test_compliance_reporting.py",
+      "sha256": "5ebcbc59c19b0cea2ba80453d4df1d215c973f8ea288cd15be39cfb9168daeec"
+    },
+    {
+      "path": "tests/test_document_intelligence.py",
+      "sha256": "c16f5357c8144657f78ccf34563c8c20d0f9df248aaf2ba7883a896a7a0d6cc9"
+    },
+    {
+      "path": "tests/test_growth_coverage.py",
+      "sha256": "920a93d9d18d925a7ed2d5a72420efb0b5ed77f1dcba3c54f434e10cadc32a4a"
+    },
+    {
+      "path": "tests/test_growth_task_security.py",
+      "sha256": "c6a400f7aabbfad00601ddbffecef279a15c18fca429d5d60b8dda5ce55decf1"
+    },
+    {
+      "path": "tests/test_historical_ndvi.py",
+      "sha256": "5409ff9003c281a0485f0d737f4afb0dd88929ad3b055a9491822ab77310ea63"
+    },
+    {
+      "path": "tests/test_integrity_review_contracts.py",
+      "sha256": "472a15f7d6272dfa6e06f7cc4488a342e25b628ab2081de5889f12f3d06ff2b0"
+    },
+    {
+      "path": "tests/test_latest_regressions.py",
+      "sha256": "c6c966bf13fc6c3eff0999d85f4b44c0e6a7f41d9e829adc80e6dfbf0a1a9d02"
+    },
+    {
+      "path": "tests/test_map_runtime.py",
+      "sha256": "696fb23af63ef437f8a3138bc35a8608014d6a51ccac82aa85fc6195ae92486d"
+    },
+    {
+      "path": "tests/test_new_capabilities_api.py",
+      "sha256": "7f3659ec1da4c790499f3a0b095965f79d0e6de63f5555495b687237960056cc"
+    },
+    {
+      "path": "tests/test_parcel_growth_core.py",
+      "sha256": "76cf00238420644147d83e6b0432c09a6cc56c36de7a94fbeb43f71723c3ed30"
+    },
+    {
+      "path": "tests/test_parcel_growth_raster.py",
+      "sha256": "6e542db74325ccbb6c3698900068fd4cc07d8a61ea98807249b4c908ae2cac56"
+    },
+    {
+      "path": "tests/test_parcel_preflight.py",
+      "sha256": "287543086e393c59788cb583965d8ea425a7b8a57f7e3b99dca0457cffc59216"
+    },
+    {
+      "path": "tests/test_pdfium_extraction.py",
+      "sha256": "f86bc2f2195f6530b4842acc601ec178ed76401b758a01008676a53d112fdfad"
+    },
+    {
+      "path": "tests/test_policy_contract.py",
+      "sha256": "c26d0731550e0819208109b5582d91b394a837d17a6a15d543e8c5f222096d1c"
+    },
+    {
+      "path": "tests/test_public_validation.py",
+      "sha256": "24b5853ad5ca48941c897e7b8974658ceb3f3847422856719d7731b0b3342c6a"
+    },
+    {
+      "path": "tests/test_remote_sensing_cache.py",
+      "sha256": "c7fba8437f7395c8d642c86e66be1d7c5808730c98752886c61b4c98f84ae2d6"
+    },
+    {
+      "path": "tests/test_report_exports.py",
+      "sha256": "e8c0843b5ea8c950f548faf7ca842e6830d3d2a97c1665ef5c04d95111f3b1ad"
+    },
+    {
+      "path": "tests/test_report_generator.py",
+      "sha256": "e5751ec885f0a6aee6b2aa733a50b54900d4c509205674e408b6efabafdbe28a"
+    },
+    {
+      "path": "tests/test_screening_map_rendering.py",
+      "sha256": "f46e9ecebfb70cfade0deb5df910ad9956be7421547d68d3d8f3cc75e18cbf70"
+    },
+    {
+      "path": "tests/test_spatial_upload_security.py",
+      "sha256": "8bc2926212a680d776a0bfb7685ccfdeebe5cd59f5a75a4ba4cab5b4a69d5e92"
+    },
+    {
+      "path": "tests/test_state_machine.py",
+      "sha256": "9f423b91397f5db7b52535028e57ece2a8d625e4b4be5abe0bac0042974b0a87"
+    },
+    {
+      "path": "validation/README.md",
+      "sha256": "ae5a359e4b45d8f9fec19a39ec9f0bb5e670ba635881545e58846d2d7ae36364"
+    },
+    {
+      "path": "validation/__init__.py",
+      "sha256": "d1b73a7ffe1940af538e48ff560df5dc458ee219c50899f98cb756faa1a45d19"
+    },
+    {
+      "path": "validation/figures/01_test_metrics.png",
+      "sha256": "444fe6c934a5cf85f84786d6792cebd4b824e61e4db905c8f7f2bce5a0b224aa"
+    },
+    {
+      "path": "validation/figures/02_threshold_sensitivity.png",
+      "sha256": "f2c24a8a9c3e4da501dce6afa1ab75538df1381ad61aed04b868da5e0da2a901"
+    },
+    {
+      "path": "validation/figures/03_area_agreement.png",
+      "sha256": "21311be73fc4fdac00b7ce0b2ce416aba5b96686e5e292aa32f7e1e27757e293"
+    },
+    {
+      "path": "validation/figures/04_event_area_error.png",
+      "sha256": "e521a9870598bc3a562a247894b36b056791facd0fd41fe4126ee0e021e2f90b"
+    },
+    {
+      "path": "validation/figures/05_confusion_matrix.png",
+      "sha256": "d0f941fd964b16374716d78d8c64ed67c2531dfbcc370cd01cd2bce2ae8c09b3"
+    },
+    {
+      "path": "validation/figures/06_example_overlays.png",
+      "sha256": "730aa6937978cc80118a3b430ab02dd11d9b7fd5a2dc27f2d1df2f1d7c83212c"
+    },
+    {
+      "path": "validation/manifest.csv",
+      "sha256": "71f60fb61e2dee2d3ff4cf37bae493f44c2af0fddb14b4f58b06b01cd2d03acd"
+    },
+    {
+      "path": "validation/report/README.md",
+      "sha256": "079f370a141ea347c94aa90f607547e451b3c916dbbb4e408481a56ad4f3610d"
+    },
+    {
+      "path": "validation/report/build_report.py",
+      "sha256": "96ca80f714c0ae871db662c57183b09ba1855f17a7e0ebd2cc4ceaf5922fcc41"
+    },
+    {
+      "path": "validation/requirements.txt",
+      "sha256": "2e6a8ebfdc6419ab99132cd92fb39998baf8bde9c2d6b91457c47f23c9b42885"
+    },
+    {
+      "path": "validation/results/calibration_metrics.csv",
+      "sha256": "334bf4b8ae427973e0575be287c980a4541f4425cc713c71fa7d9ddb91e4e502"
+    },
+    {
+      "path": "validation/results/ml_calibration_metrics.csv",
+      "sha256": "b2fa95dea8949fec95dc2fba49046fccbb83212a23a11790155b6360c663a660"
+    },
+    {
+      "path": "validation/results/sample_metrics.csv",
+      "sha256": "585df5f5bc912ac6af27b24d0c416f3a7ba5d2bef612ed6adcac670df93045a1"
+    },
+    {
+      "path": "validation/results/summary_metrics.json",
+      "sha256": "388224b414561ecd293d76d4fecf6c95500f9b1325d8c3c66c099dab4976a729"
+    },
+    {
+      "path": "validation/sen1floods11_benchmark.py",
+      "sha256": "b09cdbd8bbe692086997abb76f952a445b0e21c3324dde37756f73c2daeed589"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source": "UAV_YOLOv8",
+        "disaster_type": "flood",
+        "detection_date": "2020-07-20"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [113.51, 34.49],
+          [113.57, 34.49],
+          [113.57, 34.56],
+          [113.51, 34.56],
+          [113.51, 34.49]
+        ]]
+      }
+    }
+  ]
+}

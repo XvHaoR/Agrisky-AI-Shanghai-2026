@@ -1,0 +1,26 @@
+version: default_v1
+thresholds:
+  flood:
+    high: 0.40
+    medium: 0.15
+  drought:
+    high: 0.50
+    medium: 0.20
+  hail:
+    high: 0.30
+    medium: 0.10
+  typhoon:
+    high: 0.40
+    medium: 0.15
+  pest:
+    high: 0.35
+    medium: 0.10
+  frost:
+    high: 0.40
+    medium: 0.15
+  other:
+    high: 0.40
+    medium: 0.20
+# 大额赔款阈值：≥此金额的案件强制人工/财务复核（不再据此抬高风险等级；
+# 风险等级只看受损严重度/减产率）。农险赔款普遍较大，故设 50 万让此标记有区分度。
+high_payout_threshold_yuan: 500000

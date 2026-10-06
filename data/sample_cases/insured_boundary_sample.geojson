@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "PLOT-008",
+        "plot_name": "李家村水稻田",
+        "insured_area_mu": 120.5,
+        "crop_type": "rice",
+        "owner": "李某某",
+        "policy_id": "POL-2026-001"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [113.50, 34.50],
+          [113.58, 34.50],
+          [113.58, 34.58],
+          [113.50, 34.58],
+          [113.50, 34.50]
+        ]]
+      }
+    }
+  ]
+}

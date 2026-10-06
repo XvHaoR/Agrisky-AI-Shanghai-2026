@@ -1,0 +1,216 @@
+.canvas {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  /* 高度策略：最小高度固定，纵向随工作区列高伸展填满，不再随视口 dvh 浮动 */
+  min-height: 480px;
+  height: 100%;
+  flex: 1 1 auto;
+  margin-top: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(54, 92, 75, 0.92);
+  border-radius: 8px;
+  background:
+    linear-gradient(115deg, rgba(44, 154, 160, 0.09), transparent 28%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    #0b120e;
+  background-size: 36px 36px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    inset 0 0 44px rgba(34, 122, 128, 0.14);
+}
+
+.canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(127, 180, 160, 0.11) 1px, transparent 1px),
+    linear-gradient(rgba(127, 180, 160, 0.08) 1px, transparent 1px);
+  background-size: 96px 96px;
+  opacity: 0.55;
+}
+
+.frame,
+.image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.frame {
+  z-index: 3;
+  background: #101510;
+}
+
+.image {
+  z-index: 1;
+  /* 画布随列高伸展后，cover 会加大裁剪导致承保区域显示不全；contain 保证完整影像按比例呈现 */
+  object-fit: contain;
+  background: transparent;
+}
+
+/* 影像模式：画布高度贴合影像真实宽高比，避免大段暗色留白 */
+.imageMode {
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 400px;
+  max-height: 640px;
+}
+
+.hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  pointer-events: none;
+}
+
+.hud span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-height: 28px;
+  padding: 5px 8px;
+  border: 1px solid rgba(127, 180, 160, 0.28);
+  border-radius: 8px;
+  background: rgba(5, 16, 12, 0.88);
+  color: #d8eee4;
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.hud svg {
+  flex: 0 0 auto;
+  color: #80c7c3;
+}
+
+.edge {
+  position: absolute;
+  z-index: 4;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  color: rgba(216, 238, 228, 0.58);
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  pointer-events: none;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.edgeTop {
+  top: 50px;
+  right: 14px;
+}
+
+.edgeLeft {
+  bottom: 16px;
+  left: 14px;
+  transform-origin: left bottom;
+  transform: rotate(-90deg) translateY(100%);
+}
+
+.orbit {
+  position: absolute;
+  inset: auto auto -120px -90px;
+  z-index: 3;
+  width: 420px;
+  height: 260px;
+  border: 1px solid rgba(128, 199, 195, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: rotate(-16deg) scaleX(1.55);
+}
+
+.orbit span {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c4efe8;
+  box-shadow: 0 0 18px rgba(128, 199, 195, 0.9);
+}
+
+.empty {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  width: min(90%, 460px);
+  color: #d9e7df;
+  text-align: center;
+}
+
+.empty strong {
+  color: #f4fbf7;
+}
+
+.empty > span {
+  color: #aebdb4;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.fieldOutline {
+  position: absolute;
+  inset: -80px 40px auto;
+  height: 160px;
+  border: 1px solid rgba(127, 180, 160, 0.28);
+  transform: rotate(-8deg) skew(-6deg);
+}
+
+.fieldOutline div,
+.fieldOutline span {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(127, 180, 160, 0.2);
+}
+
+.fieldOutline span {
+  inset: 40px;
+}
+
+@media (max-width: 1180px) {
+  .canvas {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 760px) {
+  .canvas {
+    min-height: 340px;
+  }
+
+  .hud {
+    right: 62px;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 1181px) {
+  .canvas {
+    min-height: 440px;
+  }
+}

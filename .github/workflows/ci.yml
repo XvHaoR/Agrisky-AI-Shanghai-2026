@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - "codex/**"
+      - "agent/**"
+  pull_request:
+    branches:
+      - main
+      - master
+
+concurrency:
+  group: agrisky-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    env:
+      AGRISKY_ALLOW_MOCK_REMOTE_SENSING: "true"
+      AGRISKY_AUTH_ENABLED: "false"
+      AGRISKY_CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      GEE_PROJECT_ID: agrisky-ci-placeholder
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install geospatial system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            fontconfig \
+            fonts-noto-cjk \
+            gdal-bin \
+            libgdal-dev
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Verify Chinese report font
+        run: |
+          fc-match "Noto Sans CJK SC"
+          python -c "import sys; sys.path.insert(0, 'api_gateway'); from growth_analysis import _report_font; _report_font(12)"
+
+      - name: Run backend tests
+        env:
+          AGRISKY_DB_PATH: ${{ runner.temp }}/agrisky-ci.db
+          AGRISKY_OUTPUT_ROOT: ${{ runner.temp }}/agrisky-outputs
+        run: python -m pytest
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend-next
+    env:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend-next/package-lock.json
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Validate public API origin rules
+        run: npm run test:config
+
+      - name: Build
+        run: npm run build
+
+  containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build API image
+        run: docker build --file Dockerfile --tag agrisky-api:ci .
+
+      - name: Smoke-test API image
+        run: |
+          docker run --detach --name agrisky-api-ci --publish 8000:8000 agrisky-api:ci
+          trap 'docker logs agrisky-api-ci; docker rm --force agrisky-api-ci' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8000/health; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Build web image
+        run: >-
+          docker build --file frontend-next/Dockerfile
+          --build-arg NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+          --tag agrisky-web:ci .

@@ -1,0 +1,33 @@
+version: payout_v1
+# 赔付曲线模式：
+#   stepped   = 分档定赔（同一档内减产率不同也赔同一比例 —— 会出现"不同年份赔款一样"）
+#   piecewise = 按下面档位做线性插值（连续，保留档位形状，不同减产率→不同赔款）【推荐】
+#   linear    = 赔款与减产率成正比（起赔点以上 factor = 减产率）
+payout_mode: piecewise
+deductible_threshold: 0.20
+sum_insured_per_mu:
+  rice: 1000
+  wheat: 800
+  corn: 700
+  maize: 700
+  soybean: 700
+  cotton: 1200
+  peanut: 900
+  rapeseed: 600
+  default: 800
+payout_tiers:
+  - upper: 0.20
+    factor: 0.00
+    label: below deductible
+  - upper: 0.40
+    factor: 0.30
+    label: light loss, 30 percent payout
+  - upper: 0.60
+    factor: 0.50
+    label: moderate loss, 50 percent payout
+  - upper: 0.80
+    factor: 0.80
+    label: severe loss, 80 percent payout
+  - upper: 1.01
+    factor: 1.00
+    label: extreme loss, 100 percent payout
