@@ -14,7 +14,7 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "71bd1bde4be3301e013d86ce3e33705f4921e50b3e7f655726eabb9480c3feba"
+      "sha256": "acba0234b663b5098b3913cb87a7bf67c943c2b76c2d0e13ad9680ab1e5184bc"
     },
     {
       "path": ".gitignore",
@@ -22,7 +22,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "5dd2ce98441b3efaf91640deac4bdf99340e4af4e96c548ff0b7c1129fcd9028"
+      "sha256": "90480b6f36cf680557bc2d22362dde5c3d9293851dbe8a62ed69f4390b6ea516"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -254,7 +254,7 @@
     },
     {
       "path": "frontend-next/Dockerfile",
-      "sha256": "acb8f102368d1c089ffe2aa9c6ab1a9fc65b8513c3b0242cb9a2f5e8ef2e7e85"
+      "sha256": "b5b8d914a59a1ebd1989b40e457fc7a368e2b00b9692d0369f8746b9c6f77c89"
     },
     {
       "path": "frontend-next/app/_components/AdminGate.tsx",

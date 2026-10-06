@@ -114,3 +114,15 @@ jobs:
           docker build --file frontend-next/Dockerfile
           --build-arg NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
           --tag agrisky-web:ci .
+
+      - name: Smoke-test web image
+        run: |
+          docker run --detach --name agrisky-web-ci --publish 3000:3000 agrisky-web:ci
+          trap 'docker logs agrisky-web-ci; docker rm --force agrisky-web-ci' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3000/ > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
